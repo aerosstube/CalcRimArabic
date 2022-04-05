@@ -82,7 +82,7 @@ public class Calculator implements CalculatorPres {
                 res[0] = 10;
                 break;
             default:
-                throw new IllegalArgumentException("Вводимые числа не могут быть больше X");
+                throw new IllegalArgumentException("Вводимые числа не могут быть больше X либо отрицательными");
         }
 
         switch (numbersString[2]) {
@@ -117,7 +117,7 @@ public class Calculator implements CalculatorPres {
                 res[1] = 10;
                 break;
             default:
-                throw new IllegalArgumentException("Вводимые числа не могут быть больше X");
+                throw new IllegalArgumentException("Вводимые числа не могут быть больше X либо отрицательными");
         }
 
         return res;
@@ -208,7 +208,17 @@ public class Calculator implements CalculatorPres {
                 throw new IllegalArgumentException("Формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
         };
 
+        if (res < 0) {
+            throw new IllegalArgumentException("Число не может быть отрицательным!");
+
+        }
+
+
         if (isRimNumber()) {
+            if (res == 0) {
+                throw new IllegalArgumentException("Римское число не может быть нулем!");
+            }
+
             return RomanNumeral.arabicToRoman(res);
         }
 
