@@ -12,12 +12,16 @@ public class Calculator implements CalculatorPres {
     public String getInput() {
         return input;
     }
+
     public static boolean isRimNumberIf(String el) {
         return el.equals("I") || el.equals("II") || el.equals("III") || el.equals("IV") || el.equals("V") ||
                 el.equals("VI") || el.equals("VII") || el.equals("VIII") || el.equals("VIV") || el.equals("X");
     }
 
     public static boolean isArabicNumberIf(String el) {
+        if(Integer.parseInt(el) < 0) throw new IllegalArgumentException("Число не может быть отрицательным!");
+
+
         return el.equals("1") || el.equals("2") || el.equals("3") || el.equals("4") || el.equals("5") ||
                 el.equals("6") || el.equals("7") || el.equals("8") || el.equals("9") || el.equals("10");
 
@@ -187,6 +191,9 @@ public class Calculator implements CalculatorPres {
         numbers = stringIntoNumbers();
         int res = 0;
 
+        if(numbers[0] < 0 || numbers[1] < 0) throw new IllegalArgumentException("Число не может быть отрицательным!");
+
+
         switch (sign) {
 
             case "+":
@@ -208,10 +215,6 @@ public class Calculator implements CalculatorPres {
                 throw new IllegalArgumentException("Формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
         };
 
-        if (res < 0) {
-            throw new IllegalArgumentException("Число не может быть отрицательным!");
-
-        }
 
 
         if (isRimNumber()) {
